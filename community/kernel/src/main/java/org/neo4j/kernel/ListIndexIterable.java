@@ -22,22 +22,21 @@ package org.neo4j.kernel;
 import java.util.Iterator;
 import java.util.List;
 
-import org.neo4j.graphdb.index.IndexIterable;
 import org.neo4j.graphdb.index.IndexProvider;
 
 /**
  * Provides {@link IndexProvider} objects based on a provided list.
  * This fits well with modern dependency injection frameworks including OSGi Blueprint.
- * 
+ *
  * @todo This is a helper class to help transition from {@link LegacyIndexIterable}.
  *    When the transition is finished both classes should be replaced with a single
- *    List<IndexProvider> or, better yet, direct dependency injection. 
+ *    List<IndexProvider> or, better yet, direct dependency injection.
  * @author ceefour
  */
-public class ListIndexIterable implements IndexIterable {
+public class ListIndexIterable implements Iterable<IndexProvider> {
 
 	private List<IndexProvider> indexProviders;
-	
+
 	@Override
 	public Iterator<IndexProvider> iterator() {
 		if (indexProviders != null)

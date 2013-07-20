@@ -27,7 +27,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.neo4j.graphdb.GraphDatabaseService;
-import org.neo4j.graphdb.index.IndexIterable;
 import org.neo4j.graphdb.index.IndexProvider;
 import org.neo4j.helpers.Service;
 import org.neo4j.helpers.collection.Iterables;
@@ -40,7 +39,7 @@ import org.neo4j.kernel.impl.transaction.xaframework.TransactionInterceptorProvi
 
 /**
  * Creates a {@link org.neo4j.graphdb.GraphDatabaseService}.
- * 
+ *
  * Use {@link #newEmbeddedDatabase(String)} or
  * {@link #newEmbeddedDatabaseBuilder(String)} to create a database instance.
  */
@@ -102,10 +101,8 @@ public class GraphDatabaseFactory
      * {@link org.neo4j.kernel.ListIndexIterable} is a flexible provider that works well with
      * dependency injection.
      *
-     * @param indexIterable It's actually Iterable<IndexProvider>, but internally typecasted
-     *                      to workaround bug https://issues.apache.org/jira/browse/ARIES-834 .
      */
-    public void setIndexProviders( IndexIterable indexIterable )
+    public void setIndexProviders(Iterable<IndexProvider> indexIterable )
     {
         indexProviders.clear();
         for ( IndexProvider indexProvider : indexIterable )

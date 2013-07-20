@@ -23,15 +23,15 @@
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0">
-        
+
     <reference-list id="indexProviders" interface="org.neo4j.graphdb.index.IndexProvider"
     	availability="optional"/>
     <bean id="listIndexIterable" class="org.neo4j.kernel.ListIndexIterable">
     	<property name="indexProviders" ref="indexProviders"/>
     </bean>
-    
+
     <bean id="graphDatabaseFactory" class="org.neo4j.graphdb.factory.GraphDatabaseFactory">
-    	<property name="indexIterable" ref="listIndexIterable"/>
+    	<property name="indexProviders" ref="listIndexIterable"/>
     </bean>
     <service ref="graphDatabaseFactory" interface="org.neo4j.graphdb.factory.GraphDatabaseFactory"/>
 </blueprint>

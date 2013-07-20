@@ -21,21 +21,20 @@ package org.neo4j.kernel;
 
 import java.util.Iterator;
 
-import org.neo4j.graphdb.index.IndexIterable;
 import org.neo4j.graphdb.index.IndexProvider;
 import org.neo4j.helpers.Service;
 
 /**
  * Provides {@link IndexProvider} objects based on {@link Service#load} static
  * method.
- * 
+ *
  * @author ceefour
  */
-public class LegacyIndexIterable implements IndexIterable {
+public class LegacyIndexIterable implements Iterable<IndexProvider> {
 
 	@Override
 	public Iterator<IndexProvider> iterator() {
 		return Service.load(IndexProvider.class).iterator();
 	}
-	
+
 }
